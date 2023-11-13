@@ -37,8 +37,37 @@ concatentation: refers to the process of combining two or more strings into a si
 
 RegExp: is short for "regular expression," which is a powerful tool for pattern matching and text manipulation. A regular expression is a sequence of characters that defines a search pattern. It is used for searching, matching, and manipulating strings based on certain rules or patterns.
 
+Element: refers to an individual item within an array or a collection
+
 
 */
+// Implicit String Array
+// TS will infer that this is an array of strings based off context
 let stringArr = ['one', 'hey', 'Dave'];
-let guitars = ['Strat', 'Les Paul', '5150'];
+// TS will allow you to reassign this elements value to another string
+stringArr[0] = 'two';
+// TS will allow you to push an additional element into the array as long as it is a string
+stringArr.push("three");
+// TS will not allow you to assign this value to a number because it has infered that the elements value should be a string
+//stringArr[0] = 1
+// TS will not allow you to push a number into the array because it has infered that this is an array of string elements
+//stringArr.push(42)
+// Implicit Union Array
+// TS will infer that the element types in this array shoulld be numbers or strings (union type) via context of its contents
+let guitars = ['Strat', 'Les Paul', 5150];
+// Valid as long as the value is a number or string
+guitars[0] = 1984;
+// Valid the value is a string and modifying the length of the array is allowed
+guitars.unshift('Jim');
+// Invalid this is a boolean value not a string or number
+//guitars.unshift(true)
+// Invalid TS all elements in stringArr must be string as infered by TS the elements in guitar are union type number|string
+//stringArr = guitars
+// Valid TS since guitars allows (number|string) elements and stringArr contains only string elements
+guitars = stringArr;
+// Implicit Union Array
+// TS infers this is a union type (string|number|boolean)
 let mixedData = ['EVH', 1984, true];
+// Implicit Any Array
+// TS will infer that this an an any type Array
+let test = [];
