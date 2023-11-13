@@ -39,6 +39,8 @@ RegExp: is short for "regular expression," which is a powerful tool for pattern 
 
 Element: refers to an individual item within an array or a collection
 
+Tuple: refers to data structure that allows you to define an ordered collection of elements, each with a specific type. Unlike arrays, which can hold elements of the same or different types, tuples are more strict, have a fixed number of elements, a set order, and each element's type is explicitly defined.
+
 
 */
 // Implicit String Array
@@ -71,3 +73,37 @@ let mixedData = ['EVH', 1984, true];
 // Implicit Any Array
 // TS will infer that this an an any type Array
 let test = [];
+// Explicit String Array
+let bands = [];
+// Valid TS
+bands.push('Van Halen');
+// Invalid attempting to push a booleann into a string array
+//bands.push(true)
+// Tuple
+// tuples are a very strict data structure they have a fixed number of elements, a set order, and each element's type is explicitly defined
+let myTuple = ['Dave', 8, true];
+// Implicit Union Array
+// Arrays are not strict in the length or order or types
+let mixed = ['John', 1, false];
+// Invalid. while the types and length are the same Arrays are not stict when it comed to their length and can contain fewer or greater than 3 elements because of this an array may not be assigned to a tuple
+//myTuple = mixed
+// Valid. Arrays are less strict than tuples so assigning a tuple to an array is valid
+mixed = myTuple;
+// Invalid. the 2 index in myTuple must be boolean
+//myTuple[2] = 42
+// Objects
+let myObj;
+myObj = [];
+// arrays are object  types in JS
+console.log(typeof myObj);
+// TS will infer the types of each property in the object based off context
+const exampleObj = {
+    prop1: 'Dave',
+    prop2: true
+};
+// Invalid. prop1 must be a string value
+//exampleObj.prop1 = 42
+// Valid
+exampleObj.prop1 = 'Sam';
+//video paused at 56:31
+//https://youtu.be/gieEQFIfgYc?t=3391
