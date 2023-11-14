@@ -1,5 +1,5 @@
 "use strict";
-/*
+/*---- Terminology -------------------------------------------------------------
 
 Terminology
 Typescript: a strongly typed programming language that builds on and compiles to JavaScript, giving you better tooling at any scale.
@@ -41,69 +41,125 @@ Element: refers to an individual item within an array or a collection
 
 Tuple: refers to data structure that allows you to define an ordered collection of elements, each with a specific type. Unlike arrays, which can hold elements of the same or different types, tuples are more strict, have a fixed number of elements, a set order, and each element's type is explicitly defined.
 
+Type Alias: refers to a way of creating a new name for a type. It allows developers to give a more descriptive or concise name to an existing type or to create complex types by combining existing ones.
+     
+     Capabilities:
 
-*/
+    Can represent simple types (e.g., primitives, unions, intersections).
+    Allows for combining existing types into new types.
+    Cannot be extended or merged.
+    Useful for creating descriptive names for types and defining complex types.
+
+
+
+Interface: refers to  a contract for the shape of an object, specifying the names, types, and optional methods that an object must have to conform to that interface. It acts as a blueprint for objects ensuring specific properties and methods.
+
+     Capabilities:
+
+    Defines object shapes by specifying properties and methods that must be present.
+    Supports extending other interfaces to inherit properties.
+    Allows declaration merging, combining multiple interface declarations into a single definition.
+    Cannot represent union types, intersections, or simple type aliases.
+
+
+---- Code ----------------------------------------------------------------------------------------------------*/
 // Implicit String Array
 // TS will infer that this is an array of strings based off context
 let stringArr = ['one', 'hey', 'Dave'];
+// Valid
 // TS will allow you to reassign this elements value to another string
 stringArr[0] = 'two';
+// Valid
 // TS will allow you to push an additional element into the array as long as it is a string
 stringArr.push("three");
+//Invalid
 // TS will not allow you to assign this value to a number because it has infered that the elements value should be a string
 //stringArr[0] = 1
+// Invalid
 // TS will not allow you to push a number into the array because it has infered that this is an array of string elements
 //stringArr.push(42)
+//Valid
 // Implicit Union Array
 // TS will infer that the element types in this array shoulld be numbers or strings (union type) via context of its contents
 let guitars = ['Strat', 'Les Paul', 5150];
-// Valid as long as the value is a number or string
+// Valid 
+// Allowed as long as the value is a number or string
 guitars[0] = 1984;
-// Valid the value is a string and modifying the length of the array is allowed
+// Valid 
+// The value is a string and modifying the length of the array is allowed
 guitars.unshift('Jim');
-// Invalid this is a boolean value not a string or number
+// Invalid 
+// This is a boolean value not a string or number
 //guitars.unshift(true)
-// Invalid TS all elements in stringArr must be string as infered by TS the elements in guitar are union type number|string
+// Invalid
+// All elements in stringArr must be string as infered by TS. The elements in guitar are union type number|string
 //stringArr = guitars
-// Valid TS since guitars allows (number|string) elements and stringArr contains only string elements
+// Valid 
+//Guitars allows (number|string) elements and stringArr contains only string elements
 guitars = stringArr;
+// Valid
 // Implicit Union Array
-// TS infers this is a union type (string|number|boolean)
+// TS infers this is a union type (string|number|boolean) 
 let mixedData = ['EVH', 1984, true];
+// Valid
 // Implicit Any Array
 // TS will infer that this an an any type Array
 let test = [];
+// Valid
 // Explicit String Array
 let bands = [];
-// Valid TS
+// Valid
 bands.push('Van Halen');
-// Invalid attempting to push a booleann into a string array
+// Invalid 
+// Attempting to push a boolean into a string array
 //bands.push(true)
-// Tuple
-// tuples are a very strict data structure they have a fixed number of elements, a set order, and each element's type is explicitly defined
+// Valid
+// Tuple Type
+// Tuples are a very strict data structure they have a fixed number of elements, a set order, and each element's type is explicitly defined
 let myTuple = ['Dave', 8, true];
+// Valid
 // Implicit Union Array
 // Arrays are not strict in the length or order or types
 let mixed = ['John', 1, false];
-// Invalid. while the types and length are the same Arrays are not stict when it comed to their length and can contain fewer or greater than 3 elements because of this an array may not be assigned to a tuple
+// Invalid 
+// While the types and length are the same, Arrays are not stict when it comes to their length and may contain fewer or greater than 3 elements. Because of this an array may not be assigned to a tuple.
 //myTuple = mixed
-// Valid. Arrays are less strict than tuples so assigning a tuple to an array is valid
+// Valid
+//Arrays are less strict than tuples so assigning a tuple to an array is valid
 mixed = myTuple;
-// Invalid. the 2 index in myTuple must be boolean
+// Invalid
+// The 2 index in myTuple must be boolean
 //myTuple[2] = 42
+// Valid
 // Objects
 let myObj;
 myObj = [];
-// arrays are object  types in JS
+// arrays are object types in JS
 console.log(typeof myObj);
+// Valid
+// Object with Implicit values
 // TS will infer the types of each property in the object based off context
 const exampleObj = {
     prop1: 'Dave',
     prop2: true
 };
-// Invalid. prop1 must be a string value
-//exampleObj.prop1 = 42
+// Invalid
+// prop1 must be a string value
+// exampleObj.prop1 = 42
 // Valid
+// The value is a string
 exampleObj.prop1 = 'Sam';
-//video paused at 56:31
-//https://youtu.be/gieEQFIfgYc?t=3391
+// Valid
+// Object using the Guitarist Type Alias
+let evh = {
+    name: 'Eddie',
+    active: false,
+    albums: [1984, 5150, 'OU812']
+};
+// Invalid
+// active must be a boolean to be a Valid Guitarist type
+// let evhInvalid: Guitarist = {
+//      name: 'Eddie',
+//      active: 'No',
+//      albums: [1984, 5150, 'OU812']
+// }
