@@ -54,7 +54,11 @@ let myNameExplicit = 'Sam';
 // TS will only allow you to reassign this to a string value
 myNameExplicit = 'Not Sam';
 // Valid
+<<<<<<< HEAD
 // Any type
+=======
+// any type
+>>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 let myNameAny = true;
 // Valid
 // TS will allow you to reasign this to any value type
@@ -62,14 +66,22 @@ myNameAny = "Anything I want";
 myNameAny = 111;
 myNameAny = false;
 // Valid
+<<<<<<< HEAD
 // Union type
+=======
+// union type
+>>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 let myNameUnion = 111;
 // Valid
 // TS will let you reassign this only to the listed types
 myNameUnion = 'Sam';
 myNameUnion = 111;
 // Invalid
+<<<<<<< HEAD
 // Boolean is not a listed type
+=======
+// boolean is not a listed type
+>>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 //myNameUnion = false
 //Invalid
 // TS  will infer that the parameters here are any type because + can be used for both number addition and string concatenation. implicit type parameters will cause an error
@@ -77,17 +89,29 @@ myNameUnion = 111;
 //     return a + b
 // }
 // Valid
+<<<<<<< HEAD
 // Specifying the type as any is valid but not a best practice
+=======
+// specifying the type as any is valid but not a best practice
+>>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 const sumExplicitAnyType = (a, b) => {
     return a + b;
 };
 //Valid
+<<<<<<< HEAD
 // Specifying the number type removes the error.
+=======
+// specifying the number type removes the error.
+>>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 const sumNumberType = (a, b) => {
     return a + b;
 };
 // Valid
+<<<<<<< HEAD
 // Specifying the second parameter as a string changes the returned value type to a string
+=======
+// specifying the second parameter as a string changes the returned value type to a string
+>>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 const sumNumberStringType = (a, b) => {
     return a + b;
 };
