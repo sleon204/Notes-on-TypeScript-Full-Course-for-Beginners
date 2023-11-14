@@ -43,68 +43,90 @@ RegExp: is short for "regular expression," which is a powerful tool for pattern 
 
 
 
+// Valid
+// Implicit string
+// Typescript will infer that this is a string
 
-//*implicit* string
-//typescript will *infer* that this is a string
 let myNameImplicit = 'Sam'
 
-//explicit string
-//typescript no longer has to *infer* because we are *explicitly* specifying the type as a string
+// Valid
+// Explicit string
+// Typescript no longer has to *infer* because we are explicitly specifying the type as a string
+
 let myNameExplicit: string = 'Sam'
 
-//  TS will not allow you to reassign this to a number
+// Invalid
+// TS will not allow you to reassign this to a number
+
 //myNameExplicit = 42
 
+// Valid
+// TS will only allow you to reassign this to a string value
 
-//TS will only allow you to reassign this to a string value
 myNameExplicit = 'Not Sam'
 
-
+// Valid
 // any type
+
 let myNameAny: any = true
 
-//TS will allow you to reasign this to any value type
+// Valid
+// TS will allow you to reasign this to any value type
+
 myNameAny = "Anything I want"
 myNameAny = 111
 myNameAny = false
 
+// Valid
+// union type
 
-//union type
 let myNameUnion: string | number = 111
 
-//TS will let you reassign this only to the listed types
+// Valid
+// TS will let you reassign this only to the listed types
 
 myNameUnion = 'Sam'
 myNameUnion = 111
 
+// Invalid
 // boolean is not a listed type
+
 //myNameUnion = false
 
+//Invalid
 // TS  will infer that the parameters here are any type because + can be used for both number addition and string concatenation. implicit type parameters will cause an error
+
 // const sumImplicitAnyType = (a, b) => {
 //     return a + b
 // }
 
+// Valid
 // specifying the type as any is valid but not a best practice
+
 const sumExplicitAnyType = (a:any, b:any) => {
     return a + b
 }
 
-
+//Valid
 // specifying the number type removes the error.
+
 const sumNumberType = (a:number, b:number) => {
     return a + b
 }
 
+// Valid
 // specifying the second parameter as a string changes the returned value type to a string
+
 const sumNumberStringType = (a:number, b:string) => {
     return a + b
 }
 
 // implicit regular expression
+
 let regExImplicit = /\w+/g
 
 
 //explicit regular expression
 //RegExp type
+
 let regExExplicit: RegExp = /\w+/g
