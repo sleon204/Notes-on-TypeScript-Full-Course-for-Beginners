@@ -1,6 +1,4 @@
-/* 
-
-Terminology
+/* ---- Terminology ----
 Typescript: a strongly typed programming language that builds on and compiles to JavaScript, giving you better tooling at any scale.
 
 Compiler: refers to the TypeScript compiler, which is a tool that translates TypeScript code (which includes type annotations and other TypeScript-specific syntax) into standard JavaScript code that can be executed by browsers or other JavaScript runtime environments.
@@ -37,7 +35,7 @@ concatentation: refers to the process of combining two or more strings into a si
 RegExp: is short for "regular expression," which is a powerful tool for pattern matching and text manipulation. A regular expression is a sequence of characters that defines a search pattern. It is used for searching, matching, and manipulating strings based on certain rules or patterns.
 
 
-*/
+---- Code ---- */
 
 
 

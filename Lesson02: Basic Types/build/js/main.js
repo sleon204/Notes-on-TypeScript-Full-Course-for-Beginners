@@ -1,7 +1,5 @@
 "use strict";
-/*
-
-Terminology
+/* ---- Terminology ----
 Typescript: a strongly typed programming language that builds on and compiles to JavaScript, giving you better tooling at any scale.
 
 Compiler: refers to the TypeScript compiler, which is a tool that translates TypeScript code (which includes type annotations and other TypeScript-specific syntax) into standard JavaScript code that can be executed by browsers or other JavaScript runtime environments.
@@ -38,7 +36,7 @@ concatentation: refers to the process of combining two or more strings into a si
 RegExp: is short for "regular expression," which is a powerful tool for pattern matching and text manipulation. A regular expression is a sequence of characters that defines a search pattern. It is used for searching, matching, and manipulating strings based on certain rules or patterns.
 
 
-*/
+---- Code ---- */
 // Valid
 // Implicit string
 // Typescript will infer that this is a string
@@ -54,11 +52,7 @@ let myNameExplicit = 'Sam';
 // TS will only allow you to reassign this to a string value
 myNameExplicit = 'Not Sam';
 // Valid
-<<<<<<< HEAD
 // Any type
-=======
-// any type
->>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 let myNameAny = true;
 // Valid
 // TS will allow you to reasign this to any value type
@@ -66,22 +60,14 @@ myNameAny = "Anything I want";
 myNameAny = 111;
 myNameAny = false;
 // Valid
-<<<<<<< HEAD
 // Union type
-=======
-// union type
->>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 let myNameUnion = 111;
 // Valid
 // TS will let you reassign this only to the listed types
 myNameUnion = 'Sam';
 myNameUnion = 111;
 // Invalid
-<<<<<<< HEAD
 // Boolean is not a listed type
-=======
-// boolean is not a listed type
->>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 //myNameUnion = false
 //Invalid
 // TS  will infer that the parameters here are any type because + can be used for both number addition and string concatenation. implicit type parameters will cause an error
@@ -89,29 +75,17 @@ myNameUnion = 111;
 //     return a + b
 // }
 // Valid
-<<<<<<< HEAD
 // Specifying the type as any is valid but not a best practice
-=======
-// specifying the type as any is valid but not a best practice
->>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 const sumExplicitAnyType = (a, b) => {
     return a + b;
 };
 //Valid
-<<<<<<< HEAD
 // Specifying the number type removes the error.
-=======
-// specifying the number type removes the error.
->>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 const sumNumberType = (a, b) => {
     return a + b;
 };
 // Valid
-<<<<<<< HEAD
 // Specifying the second parameter as a string changes the returned value type to a string
-=======
-// specifying the second parameter as a string changes the returned value type to a string
->>>>>>> 6924f8cc09b5c0004914c722fe165176f92dcd42
 const sumNumberStringType = (a, b) => {
     return a + b;
 };
