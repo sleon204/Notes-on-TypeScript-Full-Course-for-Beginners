@@ -1,4 +1,4 @@
-/* 
+/* ----- Terminology ----
 
 Terminology
 Typescript: a strongly typed programming language that builds on and compiles to JavaScript, giving you better tooling at any scale.
@@ -32,34 +32,48 @@ Explicit: refers to actions or declarations that are clear, specific, and leave 
 
 Type Coercion: refers to the automatic conversion of one data type to another in a programming language. In languages with strong typing, like TypeScript, type coercion is often more explicit, and you need to explicitly convert types. In contrast, languages with weak typing, like JavaScript, perform type coercion more implicitly, often trying to convert values between types automatically.
 
-*/
+---- Code ---- */
 
-
+// Valid
 // Implicit string
 // TS will infer that this is a string via context
+
 let username = "Sam"
 console.log(username)
 
+// Valid
 // Explicit number
 // TS will handle this variable as a number and will only allow this variable to be reassigned to another number
+
 let a: number = 12
 
+// Valid
 // Explicit string
-//let b: string = '6'
 
-// TS will throw an error before the code is ever run. you cannot divide a number and a string
+let b: string = '6'
+
+// Invalid
+// You cannot divide a number and a string in TS
+// TS will throw an error before the code is ever run. 
 // JS would not throw an error. it would instead coerce the string into a number which can lead to unexpected results in certain situations
+
 //console.log(a / b)
 
-
+// Valid
 // Explicit number
-let b: number = 6
+let b2: number = 6
 
-// This is valid TS now that both vairables are numbers
-console.log(a / b)
+// Valid
+// both variables are numbers
 
+console.log(a / b2)
+
+// Valid
 // Explicit number
+
 let c: number = 2
 
 // Valid
-console.log(c * b)
+// both variables are numbers
+
+console.log(c * b2)
