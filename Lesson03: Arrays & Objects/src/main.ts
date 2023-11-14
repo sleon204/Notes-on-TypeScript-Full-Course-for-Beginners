@@ -1,4 +1,4 @@
-/*---- Terminology -------------------------------------------------------------
+/*---- Terminology ----
 
 Terminology
 Typescript: a strongly typed programming language that builds on and compiles to JavaScript, giving you better tooling at any scale.
@@ -60,8 +60,13 @@ Interface: refers to  a contract for the shape of an object, specifying the name
     Allows declaration merging, combining multiple interface declarations into a single definition.
     Cannot represent union types, intersections, or simple type aliases.
 
+Optional Properties: refer to properties that are marked with a ? character following their name in an interface or type definition, indicating that they are not required when creating objects that adhere to that interface.
 
----- Code ----------------------------------------------------------------------------------------------------*/
+     Potential for Undefined Values: 
+     
+     Using optional properties means those properties might be undefined if not explicitly set. Always handle potential undefined values when accessing optional properties to prevent runtime errors.
+
+---- Code ----*/
 
 // Implicit String Array
 // TS will infer that this is an array of strings based off context
@@ -181,6 +186,7 @@ myObj = []
 // arrays are object types in JS
 
 console.log(typeof myObj)
+// object
 
 
 // Valid
@@ -204,12 +210,25 @@ exampleObj.prop1 = 'Sam'
 // Valid
 // Type Alias
 // this will allow you to specify the value types in this object instead of using inference
+// the active property is optional, note the '?'
 
 type Guitarist = {
      name: string,
-     active: boolean,
+     active?: boolean,
      albums: (string | number) []
 }
+
+// Valid
+// Interface
+// object using interface syntax
+
+// interface Guitarist {
+//      name: string,
+//      active?: boolean,
+//      albums: (string | number) []
+// }
+
+
 // Valid
 // Object using the Guitarist Type Alias
 
@@ -227,3 +246,45 @@ let evh: Guitarist = {
 //      active: 'No',
 //      albums: [1984, 5150, 'OU812']
 // }
+
+// Valid
+// Object using the Guitarist Type Alias
+// The active property is optional
+
+let jp: Guitarist = {
+     name:'Jimmy',
+     albums: ['I', 'II', 'IV']
+}
+
+//Valid
+// assigning evh to jp is allowed since both types are gutarists
+
+evh = jp
+
+// Valid
+// Function using Type Alias as a parameter
+// interface is also a valid parameter
+
+const greetGuitarist = (guitarist: Guitarist) => {
+     return `Hello ${guitarist.name}!`
+}
+
+console.log(greetGuitarist(jp))
+// Hello Jimmy
+
+
+// Optional chaining
+interface Address {
+     street?: {
+         name: string;
+         number?: number;
+     };
+ }
+ 
+ const address: Address = { street: { name: 'Main St' } };
+ 
+ // Using optional chaining to safely access nested optional property
+ const streetNumber = address.street?.number;
+ console.log(`Street Number: ${streetNumber}`); 
+ //Street Number: undefined
+ 
