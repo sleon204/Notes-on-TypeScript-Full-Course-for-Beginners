@@ -71,11 +71,35 @@ Enum: short for "enumerations," in TypeScript are a language feature that allows
 ---- Code ----*/
 
 // Valid
-// Interface
-// object using interface syntax
+// Type Alias
+// Object using Type alias syntax and a type alias as a value
 
-interface Guitarist {
+type stringOrNumber = string |number
+
+type stringOrNumberArray = string |number[]
+
+type Guitarist = {
      name?: string,
      active: boolean,
-     albums: (string | number) []
+     albums: stringOrNumberArray
 }
+
+type UserId = stringOrNumber
+
+// Literal Type
+// Dave is the literal type
+let myName: 'Dave'
+
+// Union type with literal assignment
+let userName: 'Dave' | 'John' | 'Amy'
+
+// Valid 
+userName = 'Dave'
+
+// Invalid
+// Rachel isnt a literal type
+
+//userName = 'Rachel'
+
+
+
