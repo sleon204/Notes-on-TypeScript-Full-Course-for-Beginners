@@ -272,19 +272,35 @@ const greetGuitarist = (guitarist: Guitarist) => {
 console.log(greetGuitarist(jp))
 // Hello Jimmy
 
-
+// Valid
 // Optional chaining
+// Interface syntax for use on an object
+
 interface Address {
      street?: {
-         name: string;
-         number?: number;
-     };
+         name: string
+         number?: number
+     }
  }
  
- const address: Address = { street: { name: 'Main St' } };
- 
+ // Valid
+ // Object using the Address Interface Type
+
+ const address: Address = {
+      street: { 
+          name: 'Main St'
+     } 
+};
+
+ //Valid 
  // Using optional chaining to safely access nested optional property
+
  const streetNumber = address.street?.number;
  console.log(`Street Number: ${streetNumber}`); 
  //Street Number: undefined
+
+
+ //Enums
+
+ //video pasued at 1:07:48
  
