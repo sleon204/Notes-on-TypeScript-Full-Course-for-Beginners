@@ -70,6 +70,10 @@ Enum: short for "enumerations," in TypeScript are a language feature that allows
 
 Literal Types refer to specific types that represent exact values rather than a range of values. They allow you to specify a value explicitly, ensuring that variables or parameters can only hold that specific value or a finite set of predefined values.
 
+Void Type: represents the absence of any specific type. It is used to denote that a function does not return any value, or more precisely, that it returns undefined.
+
+Signature:  refers to a function signature or method signature, which represents the declaration of a function or method including its name, parameters, return type, and possibly its visibility or access level.
+
 ---- Code ----*/
 
 // Valid
@@ -103,5 +107,142 @@ userName = 'Dave'
 
 //userName = 'Rachel'
 
+// functions
+
+// Invalid
+// parameters are implicitly typed as any
+// TypeScript strongly encourages explicit typing to enhance code clarity, maintainability, and type safety.
+
+// const add = (a, b) => {
+//      return a + b
+// }
+
+// Valid
+// parameters are now explicitly typed
+// TS is still infering that the function will return a number
+
+const add2 = (a: number, b: number) => {
+     return a + b
+}
+
+// Valid
+// parameters are now explicitly typed
+// return is now explicitly typed
+
+const add3 = (a: number, b: number): number => {
+     return a + b
+}
 
 
+// Valid
+// function with explicitly typed parameters
+// note the return type is void
+// this function does not have an explicit return making its return type void
+
+const logMsg = (message: any) => {
+     console.log(message)
+
+}
+
+// Valid
+// function with explicitly typed parameters
+// note the return type is now specified
+
+const logMsg2 = (message: any): void => {
+     console.log(message)
+
+}
+
+logMsg("Hello")
+// Hello
+logMsg(add2(2,3))
+// 5
+
+// Valid
+// non arrow function syntax
+
+let subtract = function (c: number, d: number): number {
+     return c - d
+}
+// Valid
+// type alias for functions with the provided signature
+// cannot use default values
+
+ type mathFunction = (a:number, b:number) => number
+
+// Valid
+// Interface for functions with the provided signature
+// cannot use default values
+
+interface  mathFunction2 {
+     (a:number, b:number):number
+}
+
+// Valid
+// function using type alias
+// note the parameters only appear to be implicitly typed
+// the parameters are explicitly typed in the type alias
+
+let multiply: mathFunction = function (c, d) {
+     return c * d
+}
+
+logMsg(multiply(2,2))
+// 4
+
+//Optional Parameters
+
+// Valid
+// Normal function
+const addAll = (a:number, b:number, c:number):number => {
+     return a + b + c
+
+}
+
+// Invalid
+// function using optional parameter
+// it is possible to leave c out, the code must account for this  in order for TS to consider this valid
+
+// const addAll2 = (a:number, b:number, c?:number):number => {
+//      return a + b + c
+
+// }
+
+
+// Invalid
+// a type guard has been added but the function lacks an ending return statement and return type currently only includes number and does not include 'undefined'
+
+// const addAll2 = (a:number, b:number, c?:number):number => {
+//      if (typeof c !== 'undefined') {
+//           return a + b + c
+//      }
+// }
+
+// Valid
+// function with optional parameter
+// a typeguard is included and a return in case c is not provided
+// note optional parameters must aslways be the last parameter
+
+const addAll3 = (a:number, b:number, c?:number):number => {
+     if (typeof c !== 'undefined') {
+          return a + b + c
+     }
+     return a + b
+}
+
+// Valid
+// function with a default parameter value
+// note if default is not last then undefined must be passed as the parameter
+
+const addAll4 = (a:number = 10 , b:number, c:number = 2):number => {
+     return a + b + c
+}
+
+logMsg(addAll3(2,3,2))
+// 7
+logMsg(addAll3(2,3))
+// 5
+logMsg(addAll4(2,3))
+// 7
+logMsg(addAll4(undefined,3))
+// 15
