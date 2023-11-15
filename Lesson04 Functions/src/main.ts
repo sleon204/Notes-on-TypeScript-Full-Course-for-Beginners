@@ -68,6 +68,8 @@ Optional: Properties: refer to properties that are marked with a ? character fol
 
 Enum: short for "enumerations," in TypeScript are a language feature that allows developers to define a collection of named constants, providing a way to represent a set of related and distinct values within a specific context. Enums assign friendly names to these constant values, making code more readable, maintainable, and type-safe. They enable the creation of a fixed set of options or choices, facilitating the usage of predefined values in a structured and descriptive manner.
 
+Literal Types refer to specific types that represent exact values rather than a range of values. They allow you to specify a value explicitly, ensuring that variables or parameters can only hold that specific value or a finite set of predefined values.
+
 ---- Code ----*/
 
 // Valid
