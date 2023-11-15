@@ -61,11 +61,13 @@ Interface: refers to  a contract for the shape of an object, specifying the name
     Allows declaration merging, combining multiple interface declarations into a single definition.
     Cannot represent union types, intersections, or simple type aliases.
 
-Optional Properties: refer to properties that are marked with a ? character following their name in an interface or type definition, indicating that they are not required when creating objects that adhere to that interface.
+Optional: Properties: refer to properties that are marked with a ? character following their name in an interface or type definition, indicating that they are not required when creating objects that adhere to that interface.
 
      Potential for Undefined Values:
      
      Using optional properties means those properties might be undefined if not explicitly set. Always handle potential undefined values when accessing optional properties to prevent runtime errors.
+
+Enum: short for "enumerations," in TypeScript are a language feature that allows developers to define a collection of named constants, providing a way to represent a set of related and distinct values within a specific context. Enums assign friendly names to these constant values, making code more readable, maintainable, and type-safe. They enable the creation of a fixed set of options or choices, facilitating the usage of predefined values in a structured and descriptive manner.
 
 ---- Code ----*/
 var _a;
@@ -195,8 +197,55 @@ const greetGuitarist = (guitarist) => {
     return `Hello ${guitarist.name}!`;
 };
 console.log(greetGuitarist(jp));
-const address = { street: { name: 'Main St' } };
+// Valid
+// Object using the Address Interface Type
+const address = {
+    street: {
+        name: 'Main St'
+    }
+};
+//Valid 
 // Using optional chaining to safely access nested optional property
 const streetNumber = (_a = address.street) === null || _a === void 0 ? void 0 : _a.number;
 console.log(`Street Number: ${streetNumber}`);
 //Street Number: undefined
+//Enums
+// Valid
+// enum syntax
+// By default, enum members are assigned numeric values starting from 0 (incrementing by 1 for subsequent members).
+var Grade;
+(function (Grade) {
+    Grade[Grade["U"] = 0] = "U";
+    Grade[Grade["D"] = 1] = "D";
+    Grade[Grade["C"] = 2] = "C";
+    Grade[Grade["B"] = 3] = "B";
+    Grade[Grade["A"] = 4] = "A";
+})(Grade || (Grade = {}));
+// Valid
+// Logging U will result in 0 in the console.
+console.log(Grade.U);
+// 0
+// Valid
+// Enumeration with a set value
+var Grade2;
+(function (Grade2) {
+    Grade2[Grade2["U"] = 1] = "U";
+    Grade2[Grade2["D"] = 2] = "D";
+    Grade2[Grade2["C"] = 3] = "C";
+    Grade2[Grade2["B"] = 4] = "B";
+    Grade2[Grade2["A"] = 5] = "A";
+})(Grade2 || (Grade2 = {}));
+// modifying the value of Grade2.U will result in the rest of the values changing along with it
+console.log(Grade2.A);
+// 5
+// Valid
+var Grade3;
+(function (Grade3) {
+    Grade3[Grade3["U"] = 200] = "U";
+    Grade3[Grade3["D"] = 201] = "D";
+    Grade3[Grade3["C"] = 202] = "C";
+    Grade3[Grade3["B"] = 203] = "B";
+    Grade3[Grade3["A"] = 204] = "A";
+})(Grade3 || (Grade3 = {}));
+console.log(Grade3.A);
+// 204

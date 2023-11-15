@@ -60,11 +60,13 @@ Interface: refers to  a contract for the shape of an object, specifying the name
     Allows declaration merging, combining multiple interface declarations into a single definition.
     Cannot represent union types, intersections, or simple type aliases.
 
-Optional Properties: refer to properties that are marked with a ? character following their name in an interface or type definition, indicating that they are not required when creating objects that adhere to that interface.
+Optional: Properties: refer to properties that are marked with a ? character following their name in an interface or type definition, indicating that they are not required when creating objects that adhere to that interface.
 
      Potential for Undefined Values: 
      
      Using optional properties means those properties might be undefined if not explicitly set. Always handle potential undefined values when accessing optional properties to prevent runtime errors.
+
+Enum: short for "enumerations," in TypeScript are a language feature that allows developers to define a collection of named constants, providing a way to represent a set of related and distinct values within a specific context. Enums assign friendly names to these constant values, making code more readable, maintainable, and type-safe. They enable the creation of a fixed set of options or choices, facilitating the usage of predefined values in a structured and descriptive manner.
 
 ---- Code ----*/
 
@@ -302,5 +304,49 @@ interface Address {
 
  //Enums
 
- //video pasued at 1:07:48
+ // Valid
+ // enum syntax
+ // By default, enum members are assigned numeric values starting from 0 (incrementing by 1 for subsequent members).
  
+enum Grade {
+     U,
+     D,
+     C,
+     B,
+     A,
+}
+
+// Valid
+// Logging U will result in 0 in the console.
+
+console.log(Grade.U)
+// 0
+ 
+// Valid
+// Enumeration with a set value
+
+enum Grade2 {
+     U = 1, 
+     D,
+     C,
+     B,
+     A,
+}
+
+// modifying the value of Grade2.U will result in the rest of the values changing along with it
+
+console.log(Grade2.A)
+// 5
+
+// Valid
+
+enum Grade3 {
+     U = 200, 
+     D,
+     C,
+     B,
+     A,
+}
+
+console.log(Grade3.A)
+// 204
