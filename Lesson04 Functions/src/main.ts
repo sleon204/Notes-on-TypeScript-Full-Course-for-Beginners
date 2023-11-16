@@ -1,84 +1,60 @@
-/*---- Terminology ----
+/*----------------------
+   Terminology
+------------------------*/
 
-Terminology
-Typescript: a strongly typed programming language that builds on and compiles to JavaScript, giving you better tooling at any scale.
+// TypeScript: A strongly typed programming language compiling to JavaScript, providing better tooling at any scale.
 
-Compiler: refers to the TypeScript compiler, which is a tool that translates TypeScript code (which includes type annotations and other TypeScript-specific syntax) into standard JavaScript code that can be executed by browsers or other JavaScript runtime environments.
+// Compiler: Translates TypeScript code (with type annotations) into standard JavaScript for execution.
 
-Static Typing: refers to the practice of specifying the types of variables, parameters, and return values at compile-time, before the code is executed with the goal being to catch type-related errors early in the development process.
+// Static Typing: Specifies types of variables, parameters, and return values at compile-time to catch errors early.
 
-Variable:  refers to a named storage location that holds a value. Variables are used to store and manipulate data within a program. TypeScript, being a statically-typed language, allows developers to declare variables with specific types, providing clarity about the kind of data the variable is intended to store.
+// Variable: Named storage holding a value. In TypeScript, allows declaration with specific types for clarity.
 
-Parameter: refers to a variable that is used in the declaration of a function or method to represent an input value. Parameters allow you to pass values into a function when it is called, and they define the information that a function requires to perform its task.
+// Parameter: Variable in function/method declaration representing an input value. Defines required information for function execution.
 
-Expression: refers to a piece of code that produces a value. It can be a combination of literals, variables, operators, and function calls that, when evaluated, results in a single value. Expressions are fundamental building blocks in programming languages, and they can appear in various contexts within the code.
+// Expression: Piece of code producing a single value, composed of literals, variables, operators, and function calls.
 
-Functions: refer to blocks of reusable code that perform a specific task. They take input parameters, execute a set of statements, and optionally return a value.
+// Functions: Blocks of reusable code performing specific tasks, taking input parameters and optionally returning a value.
 
-Basic Types:
-     string: Represents textual data.
-     number: Represents numeric data, both integer and floating-point.
-     boolean: Represents true or false values.
-     null and undefined: Represent absence of value.
-     object: Represents a non-primitive type (e.g., arrays, functions, objects).
-     any: a dynamic type that essentially opts out of static typing. It can be assigned any value of any type, and TypeScript doesn't perform type checking on values of the any type. 
-     union: a way to express that a variable or parameter can have multiple types. It allows you to declare that a value may be of one type or another, providing flexibility in the types of values that can be assigned to a particular variable.
+// Basic Types: string, number, boolean, null, undefined, object, any, union.
 
-inference: refers to the compiler's ability to automatically deduce or determine the types of variables and expressions based on their usage and context, without the need for explicit type annotations. 
+// Inference: Compiler automatically deduces types of variables and expressions based on context, without explicit type annotations.
 
-implicit:  refers to actions or situations where TypeScript automatically makes decisions or performs actions without requiring explicit instructions or annotations from the developer. Implicit behaviors can be powerful and convenient, but they may also introduce risks if not used carefully, especially in terms of type safety.
+// Implicit: TypeScript makes decisions/actions without explicit instructions, introducing risks if not used carefully for type safety.
 
-explicit refers to actions or declarations that are clear, specific, and leave no room for assumptions or interpretation.
+// Explicit: Clear, specific actions or declarations leaving no room for assumptions or interpretation.
 
-Type Coercion: refers to the automatic conversion of one data type to another in a programming language. In languages with strong typing, like TypeScript, type coercion is often more explicit, and you need to explicitly convert types. In contrast, languages with weak typing, like JavaScript, perform type coercion more implicitly, often trying to convert values between types automatically.
+// Type Coercion: Automatic conversion of one data type to another in programming languages.
 
-concatentation: refers to the process of combining two or more strings into a single string. 
+// Concatenation: Process of combining two or more strings into a single string.
 
-RegExp: is short for "regular expression," which is a powerful tool for pattern matching and text manipulation. A regular expression is a sequence of characters that defines a search pattern. It is used for searching, matching, and manipulating strings based on certain rules or patterns.
+// RegExp: Powerful tool for pattern matching and text manipulation using search patterns.
 
-Element: refers to an individual item within an array or a collection
+// Element: Individual item within an array or collection.
 
-Tuple: refers to data structure that allows you to define an ordered collection of elements, each with a specific type. Unlike arrays, which can hold elements of the same or different types, tuples are more strict, have a fixed number of elements, a set order, and each element's type is explicitly defined.
+// Tuple: Ordered collection of elements, each with a specific type, more strict than arrays.
 
-Type Alias: refers to a way of creating a new name for a type. It allows developers to give a more descriptive or concise name to an existing type or to create complex types by combining existing ones.
-     
-     Capabilities:
+// Type Alias: Creating a new name for a type, allowing descriptive or concise naming or complex type creation.
 
-    Can represent simple types (e.g., primitives, unions, intersections).
-    Allows for combining existing types into new types.
-    Cannot be extended or merged.
-    Useful for creating descriptive names for types and defining complex types.
+// Interface: Contract for an object's shape, specifying names, types, and methods an object must have.
 
+// Optional Properties: Properties marked with '?' in interfaces/types, indicating non-mandatory attributes.
 
+// Enum: Collection of named constants for related values, facilitating structured usage within a context.
 
-Interface: refers to  a contract for the shape of an object, specifying the names, types, and optional methods that an object must have to conform to that interface. It acts as a blueprint for objects ensuring specific properties and methods.
+// Literal Types: Represent exact values rather than a range, allowing specification of specific values.
 
-     Capabilities:
+// Void Type: Denotes absence of any specific type, used for functions returning nothing or undefined.
 
-    Defines object shapes by specifying properties and methods that must be present.
-    Supports extending other interfaces to inherit properties.
-    Allows declaration merging, combining multiple interface declarations into a single definition.
-    Cannot represent union types, intersections, or simple type aliases.
+// Signature: Declaration of a function/method including its name, parameters, return type, and visibility/access level.
 
-Optional: Properties: refer to properties that are marked with a ? character following their name in an interface or type definition, indicating that they are not required when creating objects that adhere to that interface.
+// Rest Parameter: Feature in JavaScript allowing functions to accept an indefinite number of arguments as an array.
 
-     Potential for Undefined Values: 
-     
-     Using optional properties means those properties might be undefined if not explicitly set. Always handle potential undefined values when accessing optional properties to prevent runtime errors.
+// Never Type: Type representing values that never occur, used in scenarios where something should never happen or a function never returns.
 
-Enum: short for "enumerations," in TypeScript are a language feature that allows developers to define a collection of named constants, providing a way to represent a set of related and distinct values within a specific context. Enums assign friendly names to these constant values, making code more readable, maintainable, and type-safe. They enable the creation of a fixed set of options or choices, facilitating the usage of predefined values in a structured and descriptive manner.
-
-Literal Types refer to specific types that represent exact values rather than a range of values. They allow you to specify a value explicitly, ensuring that variables or parameters can only hold that specific value or a finite set of predefined values.
-
-Void Type: represents the absence of any specific type. It is used to denote that a function does not return any value, or more precisely, that it returns undefined.
-
-Signature:  refers to a function signature or method signature, which represents the declaration of a function or method including its name, parameters, return type, and possibly its visibility or access level.
-
-Rest parameter:  refers to a feature in JavaScript that allows functions to accept an indefinite number of arguments as an array. They enable a function to gather multiple arguments into a single parameter, making it easier to handle an arbitrary number of arguments.
-
-Never Type: refers to a type for values that never occur. It denotes a type that has no values and is typically used to indicate scenarios where something should never happen or when a function never returns (or always throws an error).
-
----- Code ----*/
+/*----------------------
+   Code
+------------------------*/
 
 // Valid
 // Type Alias
@@ -98,12 +74,15 @@ type UserId = stringOrNumber
 
 // Literal Type
 // Dave is the literal type
+
 let myName: 'Dave'
 
 // Union type with literal assignment
+
 let userName: 'Dave' | 'John' | 'Amy'
 
 // Valid 
+
 userName = 'Dave'
 
 // Invalid
@@ -137,7 +116,6 @@ const add3 = (a: number, b: number): number => {
      return a + b
 }
 
-
 // Valid
 // function with explicitly typed parameters
 // note the return type is void
@@ -168,6 +146,7 @@ logMsg(add2(2,3))
 let subtract = function (c: number, d: number): number {
      return c - d
 }
+
 // Valid
 // type alias for functions with the provided signature
 // cannot use default values
