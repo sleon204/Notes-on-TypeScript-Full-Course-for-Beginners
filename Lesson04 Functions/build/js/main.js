@@ -75,6 +75,8 @@ Void Type: represents the absence of any specific type. It is used to denote tha
 
 Signature:  refers to a function signature or method signature, which represents the declaration of a function or method including its name, parameters, return type, and possibly its visibility or access level.
 
+Rest parameter:  refers to a feature in JavaScript that allows functions to accept an indefinite number of arguments as an array. They enable a function to gather multiple arguments into a single parameter, making it easier to handle an arbitrary number of arguments.
+
 ---- Code ----*/
 // Literal Type
 // Dave is the literal type
@@ -179,3 +181,20 @@ logMsg(addAll4(2, 3));
 // 7
 logMsg(addAll4(undefined, 3));
 // 15
+// Rest parameters
+// Valid
+// Function using rest paremeters
+// Rest parameters offer flexibility by allowing functions to handle an arbitrary number of arguments, providing a concise and convenient way to work with variable-length argument lists. They simplify the process of handling multiple arguments without explicitly defining each parameter in the function signature.
+const total = (...nums) => {
+    return nums.reduce((prev, curr) => prev + curr);
+};
+logMsg(total(1, 2, 3, 4));
+// 10
+// Valid
+// Function using rest paremeters and normal parameters
+// rest parameters should be at the end
+const total2 = (a, ...nums) => {
+    return a + nums.reduce((prev, curr) => prev + curr);
+};
+logMsg(total2(1, 2, 3));
+// 6
