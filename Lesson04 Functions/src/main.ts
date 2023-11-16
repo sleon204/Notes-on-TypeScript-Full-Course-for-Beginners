@@ -6,6 +6,7 @@
 ------------------------
 
 TypeScript: A strongly typed programming language compiling to JavaScript, providing better tooling at any scale.
+
 Compiler: Translates TypeScript code (with type annotations) into standard JavaScript for execution.
 
 Static Typing: Specifies types of variables, parameters, and return values at compile-time to catch errors early.
