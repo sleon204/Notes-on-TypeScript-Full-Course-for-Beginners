@@ -77,6 +77,8 @@ Signature:  refers to a function signature or method signature, which represents
 
 Rest parameter:  refers to a feature in JavaScript that allows functions to accept an indefinite number of arguments as an array. They enable a function to gather multiple arguments into a single parameter, making it easier to handle an arbitrary number of arguments.
 
+Never Type: refers to a type for values that never occur. It denotes a type that has no values and is typically used to indicate scenarios where something should never happen or when a function never returns (or always throws an error).
+
 ---- Code ----*/
 // Literal Type
 // Dave is the literal type
@@ -198,3 +200,65 @@ const total2 = (a, ...nums) => {
 };
 logMsg(total2(1, 2, 3));
 // 6
+// Never type
+// function with a return implicitly typed never
+// this function is desinged to always throw and error
+const createError1 = (errMsg) => {
+    throw new Error(errMsg);
+};
+// Valid
+// the return is now explicitly typed
+const createError = (errMsg) => {
+    throw new Error(errMsg);
+};
+// Valid
+// never type returs also occur when a function is an endless loop
+// the function is commented out for safety
+// const infiniteLoop = () => {
+//      let i:number = 1
+//      while(true) {
+//           i++
+//      }
+// }
+// Valid
+// now that a break is added the retun value becomes void
+const infiniteLoop2 = () => {
+    let i = 1;
+    while (true) {
+        i++;
+        if (i > 100)
+            break;
+    }
+};
+// Invalid
+// TS will warn you about not including an undefined return type.
+// a return  type for all possible code paths is expected an undefined return could accur if the value input is neither string nor number
+// const numberOrString1 = (value: number | string): string => {
+//      if (typeof value === 'string') return 'string'
+//      if (typeof value === 'number') return 'number'
+// }
+// Valid
+// use of a never type
+// a code path in case neither a number nor string is input has been added and throws an error instead of returning undefined
+// TS now recognizes that the function always returns a string value in all possible cases, and thus, it doesn't require an explicit mention of an undefined return type
+const numberOrString2 = (value) => {
+    if (typeof value === 'string')
+        return 'string';
+    if (typeof value === 'number')
+        return 'number';
+    return createError('This should never happen!');
+};
+// Valid
+// custom type guard
+const isNumber = (value) => {
+    return typeof value === 'number' ? true : false;
+};
+// Valid
+// function using our custom type guard and using never type return
+const numberOrString = (value) => {
+    if (typeof value === 'string')
+        return 'string';
+    if (isNumber(value))
+        return 'number';
+    return createError('This should never happen!');
+};
